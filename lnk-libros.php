@@ -108,6 +108,7 @@ function lnk_libro_custom_meta() {
     global $post;
     if($post->post_type == 'libro'){
         add_meta_box('lnk_libro_pdf',"Archivo PDF del Libro", 'lnk_libro_pdf_meta_box', null, 'normal','core');
+        add_meta_box('lnk_libro_isbn',"ISBN", 'lnk_libro_isbn_meta_box', null, 'normal','side');
     }
 }
 add_action ('add_meta_boxes','lnk_libro_custom_meta');
@@ -117,7 +118,7 @@ function lnk_libro_pdf_meta_box() {
     wp_nonce_field(plugin_basename(__FILE__), 'lnk_libro_pdf_nonce');
 
     if($archivo = get_post_meta( $post->ID, 'lnk_libro_pdf', true )) {
-        print "PDF CARGADO: ".$archivo['url'];
+        print "PDF: <a href='".$archivo['url']."'>".$archivo['url']."</a>";
     }
 
     $html = '<p class="description">';
@@ -128,6 +129,14 @@ function lnk_libro_pdf_meta_box() {
     $html .= '<input type="file" id="lnk_libro_pdf" name="lnk_libro_pdf" value="" size="25">';
     echo $html;
 }
+
+function lnk_libro_isbn_meta_box() {
+    global $post;
+    $isbn = get_post_meta( $post->ID, 'lnk_libro_isbn', true );
+    $html .= '<input type="file" id="lnk_libro_isbn" name="lnk_libro_isbn" value="'.$isbn.'" size="8">';
+    echo $html;
+}
+
 
 function lnk_libro_update_edit_form() {
     echo ' enctype="multipart/form-data"';
@@ -159,6 +168,7 @@ function lnk_libro_save_post_meta($id) {
                 wp_die("The file type that you've uploaded is not a PDF.");
             }
         }
+        update_meta_post($id, 'lnk_libro_isbn', $_POST['lnk_libro_isbn']);
     }
 
 
