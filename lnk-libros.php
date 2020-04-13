@@ -108,7 +108,7 @@ function lnk_libro_custom_meta() {
     global $post;
     if($post->post_type == 'libro'){
         add_meta_box('lnk_libro_pdf',"Archivo PDF del Libro", 'lnk_libro_pdf_meta_box', null, 'normal','core');
-        add_meta_box('lnk_libro_isbn',"ISBN", 'lnk_libro_isbn_meta_box', null, 'normal','side');
+        add_meta_box('lnk_libro_isbn',"ISBN", 'lnk_libro_isbn_meta_box', null, 'side','core');
     }
 }
 add_action ('add_meta_boxes','lnk_libro_custom_meta');
