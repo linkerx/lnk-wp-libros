@@ -133,7 +133,7 @@ function lnk_libro_pdf_meta_box() {
 function lnk_libro_isbn_meta_box() {
     global $post;
     $isbn = get_post_meta( $post->ID, 'lnk_libro_isbn', true );
-    $html .= '<input type="file" id="lnk_libro_isbn" name="lnk_libro_isbn" value="'.$isbn.'" size="8">';
+    $html .= '<input type="text" id="lnk_libro_isbn" name="lnk_libro_isbn" value="'.$isbn.'" size="8">';
     echo $html;
 }
 
