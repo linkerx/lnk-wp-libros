@@ -49,6 +49,13 @@ function lnk_libro_create_type(){
 add_action('init', 'lnk_libro_create_type');
 add_post_type_support('libro', array('thumbnail','excerpt'));
 
+function lnk_libro_disable_gutenberg($current_status, $post_type)
+{
+    if ($post_type === 'libro') return false;
+    return $current_status;
+}
+add_filter('use_block_editor_for_post_type', 'lnk_libro_disable_gutenberg', 10, 2);
+
 function lnk_register_libro_taxonomies(){
 
     /**
