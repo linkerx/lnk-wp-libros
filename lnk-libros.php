@@ -30,6 +30,7 @@ function lnk_libro_create_type(){
             'show_ui' => true,
             'show_in_menu' => true,
             'show_in_nav_menus' => true,
+            'show_in_rest' => true,
             'has_archive' => true,
             'hierarchical' => false,
             'menu_position' => 8,
