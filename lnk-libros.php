@@ -161,7 +161,7 @@ function lnk_libro_save_post_meta($id) {
                 if(isset($upload['error']) && $upload['error'] != 0) {
                     wp_die('There was an error uploading your file. The error is: ' . $upload['error']);
                 } else {
-                    update_post_meta($id, 'lnk_libro_pdf', $upload);
+                    update_post_meta($id, 'lnk_libro_pdf', $upload['url']);
                 }
             }
             else {
