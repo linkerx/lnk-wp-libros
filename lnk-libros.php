@@ -176,8 +176,6 @@ function lnk_libro_save_post_meta($id) {
             else {
                 wp_die("The file type that you've uploaded is not a PDF.");
             }
-        } else {
-            wp_die("Error!");
         }
         update_post_meta($id, 'lnk_libro_isbn', $_POST['lnk_libro_isbn']);
     }
