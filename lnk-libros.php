@@ -159,7 +159,7 @@ function lnk_libro_save_post_meta($id) {
             if(in_array($uploaded_type, $supported_types)) {
                 print "<pre>";
 
-                var_dump($_FILES['lnk_libro_pdf']['name'],$_FILES['lnk_libro_pdf']['tmp_name'])
+                var_dump($_FILES['lnk_libro_pdf']['name'],$_FILES['lnk_libro_pdf']['tmp_name']);
                 $upload = wp_upload_bits($_FILES['lnk_libro_pdf']['name'], null, file_get_contents($_FILES['lnk_libro_pdf']['tmp_name']));
  
                 var_dump($upload);
