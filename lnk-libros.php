@@ -151,20 +151,18 @@ function lnk_libro_save_post_meta($id) {
         if (defined('DOING_AJAX') && DOING_AJAX)
                 return $id;
 
-        if(!empty($_FILES['lnk_libro_pdf']['name'])) {
+                print "<pre>";
+                var_dump($_FILES);
+                print "</pre>";
+                die;
+
+        if(!empty($_FILES['lnk_libro_pdf']['name']) && $_FILES['lnk_libro_pdf']['error'] == 0) {
             $supported_types = array('application/pdf');
             $arr_file_type = wp_check_filetype(basename($_FILES['lnk_libro_pdf']['name']));
             $uploaded_type = $arr_file_type['type'];
 
             if(in_array($uploaded_type, $supported_types)) {
-                print "<pre>";
-
-                var_dump($_FILES['lnk_libro_pdf']);
                 $upload = wp_upload_bits($_FILES['lnk_libro_pdf']['name'], null, file_get_contents($_FILES['lnk_libro_pdf']['name']));
- 
-                var_dump($upload);
-                print "</pre>";
-                die;
 
                 if(isset($upload['error']) && $upload['error'] != 0) {
                     wp_die('There was an error uploading your file. The error is: ' . $upload['error']);
@@ -175,6 +173,8 @@ function lnk_libro_save_post_meta($id) {
             else {
                 wp_die("The file type that you've uploaded is not a PDF.");
             }
+        } else {
+            wp_die("Error!");
         }
         update_post_meta($id, 'lnk_libro_isbn', $_POST['lnk_libro_isbn']);
     }
