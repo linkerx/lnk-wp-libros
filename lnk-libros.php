@@ -159,10 +159,7 @@ function lnk_libro_save_post_meta($id) {
         if (defined('DOING_AJAX') && DOING_AJAX)
                 return $id;
 
-        print "<pre>";
         var_dump($_FILES);
-        print "</pre>";
-        die;
 
         if(!empty($_FILES['lnk_libro_pdf']['name']) && $_FILES['lnk_libro_pdf']['error'] == 0) {
             $supported_types = array('application/pdf');
